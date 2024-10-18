@@ -1,0 +1,53 @@
+Assincronismo
+O assincronismo em programação refere-se à capacidade de executar operações sem bloquear o fluxo principal de execução. Em linguagens como JavaScript, isso é fundamental, pois muitas operações (como chamadas de rede, leitura de arquivos) podem demorar, e bloquear o fluxo principal (thread) pode resultar em uma má experiência para o usuário. O assincronismo permite que essas operações sejam realizadas em segundo plano.
+ AJAX (Asynchronous JavaScript and XML)
+O AJAX é uma técnica para fazer requisições HTTP de forma assíncrona, permitindo que o conteúdo da página web seja atualizado sem precisar ser recarregado completamente.
+
+Exemplo de código com AJAX:
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://api.exemplo.com/dados", true);
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    console.log(xhr.responseText);
+  }
+};
+xhr.send();
+Vantagens:
+
+Suporta navegadores antigos.
+Flexível, pois pode lidar com diferentes tipos de dados (XML, JSON, HTML, etc.).
+Desvantagens:
+
+Verboso, muitas etapas para fazer uma requisição simples.
+Complexidade no gerenciamento de respostas e erros.
+
+Promises
+As promises oferecem uma maneira mais limpa de lidar com operações assíncronas, representando uma operação que pode ser concluída no futuro. Uma promise pode estar em um de três estados: pendente, resolvida ou rejeitada.
+
+Exemplo de código com Promise:
+let promessa = new Promise((resolve, reject) => {
+  let sucesso = true;
+  
+  if (sucesso) {
+    resolve("Operação concluída com sucesso!");
+  } else {
+    reject("Ocorreu um erro.");
+  }
+});
+
+promessa.then((mensagem) => {
+  console.log(mensagem);
+}).catch((erro) => {
+  console.log(erro);
+});
+Vantagens:
+
+Torna o código assíncrono mais legível e estruturado.
+Suporte nativo para encadeamento de operações com .then().
+Desvantagens:
+
+Pode se tornar complicado em cenários de encadeamento excessivo de promises (o que levou à introdução de async/await).
+Fetch API
+O fetch é uma API moderna para realizar requisições HTTP. Ela retorna uma promise, tornando o código mais fácil de ler e escrever em comparação com o AJAX tradicional.
+
+Exemplo de código com Fetch:
